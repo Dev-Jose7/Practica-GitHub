@@ -1,0 +1,107 @@
+~Git: Es una tecnologia que permite registrar el historial de cambios (versiones) de un proyecto, lo que lo convierte en un sistema de control de versiones (VCS).
+~Repositorio: Es un proyecto que esta siendo gestionado por Git para el registro de todas sus versiones, esto significa que es el directorio (carpeta) central en donde se almacena el proyecto.
+~Commit: Son las versiones registradas de un repositorio.
+~Ramas: Son un grupo de commit's que buscan registrar versiones no finales del proyecto esto con el fin de realizar modificaciones especificas, ordenadas y aislada del producto para posteriormente intregrarlas en la versión final de este.
+~Clon: Es una copia exacta del reposotorio y se generan para permitir a un grupo de personas realizar modificaciones al proyecto y registrar los cambios que realicen estos al producto.
+~Fork: Es un grupo de reposotorios basados en un repositorio principal los cuales permiten crear proyectos con finalidades diferentes entre sí pero compartiendo la versión final del repositorio principal.
+
+Caracteristicas de Git:
+~Distribuido: Gracias a que Git permite clonar los repositorios cada colobarador detras del proyecto cuanta con un backup (copia) de este, protegiendo el repositorio en caso de perdida o fallo total en el funcionamiento del producto. Esto también permite trabajar en el proyecto sin estar conectado a internet de forma continúa ya que cada colaborador cuenta con un repositorio de forma local en su equipo.
+~Ramas y Fusiones: Git funciona a través de ramas (branch) esto permite a los colaboradores desarrollar el proyecto de una forma ordena y efectiva, ya que el uso de ramas permite desarrollar modificaciones con un funcionamiento especifico de forma aislada de la rama master (rama en donde se encuentra las versiones finales del proyecto) una vez desarrolladas estas versiones aisladas se fusionan (merge) con la version final y si una versión aislada altera a una version final no comprometerá a todo el proyecto.
+~Integridad de datos: Permite añadir validación al repositorio esto con el fin de proteger los datos de este y verificar si las modificaciones de los colaboradores no alteran a una versión final de producto.
+
+Flujo de trabajo - Funcionamiento básico:
+~Para inicializar Git es necesario determinar que directorio (carpeta) será el repositorio, una vez determinado el directorio, ubicaremos la ruta de esta carpeta con la consola, puede ser la proporcionada por Git o la que cuenta el PC. Una vez ubicado el directorio desde la consola usaremos el comando: git init ó git clone para inicializar Git en el proyecto  
+-Git init: Se usa cuando un repositorio utilizará Git por primer vez.
+-Git clone: Este se usa cuando un repositorio ha utilizado Git anteriormente y se busca trabajar en un proyecto ya iniciado, se copiará todo el repositorio incluyendo la versión final y las versiones anteriores.
+~Una vez iniciado el repositorio ya se puede comenzar con las modificaciones al proyecto que este alberga, cada que se realicen modificaciones se debe realizar un commit para que de esta manera se registren los cambios que se realicen al repositorio, estos deben de realizarse de forma manual y deben acompañarse por un comentario, Git obliga a que cada commit vaya con un comentario esto con el fín de especificar las modificaciones y quien las realizo, se recomienda que cada commit sea registrado cuando se realice una funcionalidad completa y especifica al proyecto.
+~Cuando se hace uso de Git el trabajo de registrar cada commit se divide en tres zonas: working directory, staging area y repository:
+-Working area: Es el espacio en donde se encuentran los archivos que no han sido registrados por Git, estos archivos Git los reconoce como "Untracked files".
+-Stanging area: Es el espacio en donde se encuentran los archivos que han sido registrados por Git y serán parte del proximo commit a registrar, estos archivos Git los reconoce como "Tracked files". 
+-Repository: Es el espacio en donde se contienen todos los commits del proyecto.
+~Cuando se han realizado las modificaciones necesarias y se esta seguro de registrar dichos cambios, estos archivos modificados serán añadidos al Stanging area, para eso se hace uso del comando git add.
+-Git add: Se usa cuando se desea cargar los archivos que se encuentren en estado "Untracked files" (ubicados en Working area) al Stanging area, estos cambiaran de estado y será "Tracked files". Si después de cargar estos archivos al Stanging area alguno de ellos o todos se modifican, es necesario añadirlos otra vez a esta área.
+~Una vez modificados y cargados los archivos a registrar estos serán enviados al repository (repositorio), para ello se hace uso del comando git commit:
+~Git commit: Se usa cuando se desea registrar al repositorio una modificación a un archivo o a un grupo de archivos que componen al proyecto, siempre y cuando estos hayan sido cargados al Stanging area. De esta manera los archivos modificados reemplazarán a los anteriores y pasarán a ser la versión actual (final) del proyecto.
+
+Flujo de trabajo - Funcionamiento en equipo:
+~Cuando se trabaja en equipo, la forma más optima y ordenada de registrar las versiones es haciendo uso de las ramas (branch), cada que se inicia Git por primer vez, se crea de forma automática una rama conocida como master, se recomienda que en esta rama se registre unicamente las versiones finales, es decir. Modificaciones completas y funcionales del proyecto que serán presentadas y utilizadas por el usuario final. Una vez registrados los commit´s a las ramas correspondientes se procederá a unir estos commit´s con la rama master.
+~Para hacer estas acciones posibles se debe establecer ramas principales las cuales serán usadas unicamente para registrar las modificaciones especificas que añadiran funciones especiales al proyecto, para establecer estas ramas se hace uso del comando git branch "nombre de la rama".
+-Git branch: Se usa para crear ramas en el repositorio
+~Una vez creada estas ramas, en cada una de estas procederemos a crear ramas secundarias las cuales serán otorgadas a cada uno de los colaboradores del proyecto, esto con el fin de registrar todos los cambios que llevará la etapa de desarrollo de una forma sistematica y que cada modificación realizada por un colaborador no afecte el commit que se cargará en su rama principal, de esta manera evitará y se tomarán acciones sobre algún conflicto que haya sido generado por un coloborador generando así también un conflicto global en dicho commit afectando el trabajo de todo el equipo. Tambien se evitará registrar modificaciones a la rama master que pueden comprometer a la totalidad del proyecto todo esto debido ya que la etapa de desarrollo se cuenta con escenarios de prueba y error los cuales añadirá pero también eliminará estas modificaciones que de forma directa o indirecta alterará al proyecto. Ejemplo:
+branch master (rama principal: destinada a cargar las versiones finales del proyecto)
+branch dev (rama de desarrollo: destinada a cargar las modificaciones que conlleva la etapa de desarrollo)
+	branch dev-colA (rama de desarrollo para colaborador A)
+	branch dev-colB (rama de desarrollo para colaborador B)
+	branch dev-colC (rama de desarrollo para colaborador C)
+branch fix (rama de correción: destinada a cargar las modificaciones que corrigen errores que afectan el funcionamiento del proyecto)
+	branch fix-colD (rama de correción para colaborador D)
+	branch fix-colE (rama de corrección para colaborador E)
+~Una vez que se hayan cargados todos las cambios a las ramas secundarias y se considerá que estas modificaciones estan completas y funcionales se procede a la fusión(merge) de estos commits a sus ramas principales y posteriormente estos commits de las ramas principales a la rama master esto con el fin de crear un commit completo añadiendo las funcionalidades desarrolladas por los colaboradoes de todas las ramas principales como por ejemplo, los commit's de la rama dev y los de la rama fix.
+~Cuando se cargue el commit a la rama master se procederá a subir a producción para que el usuario final use el proyecto. El proceso se volverá a repetir cada que se necesite generar una actualización o reparar un error.
+
+Herramientas de Git:
+-Linea de comandos del SO del equipo: cmd, git bash
+-GUI: GitKraken, Sourcetree, Github Desktop
+-Repositorios en la nube: GitHub, Bitbucket, GitLab
+ 
+
+
+
+
+
+
+
+
+
+Comandos Principales
+
+--Git inicia ubicandose en la carpeta raíz de los archivos del usuario
+--Repositorio, es la carpeta central de los archivos que conforman una aplicación
+--Le indicaremos a Git que queremos crear un nuevo repositorio para utilizar su sistema de control de versiones.  Solo debemos posicionarnos en la carpeta raíz de nuestro proyecto y ejecutar el comando: git init:
+
+pwd nos muestra el path o ruta de la carpeta en donde nos encontramos ubicados
+cd me permite acceder (entrar) a una carpeta en un nivel o varios niveles
+---------------------------------------------------------------------------------------------------
+cd .. me permite salir de una carpeta en un nivel o varios niveles OJO los dos puntos deben ser separados por un espacio del comando cd
+---------------------------------------------------------------------------------------------------
+ls me muestra los archivos que contiene una carpeta, puede ser la ubicación actual o una ruta especifica, no muestra los archivos ocultos
+---------------------------------------------------------------------------------------------------
+ls -a me muestra los archivos que contiene una carpeta, puede ser la ubicación actual o una ruta especifica, incluyendo los archivos ocultos
+---------------------------------------------------------------------------------------------------
+ls -l me lista los archivos que contiene una carpeta con sus atributos, puede ser la ubicación actual o una ruta especifica, no muestra los archivos ocultos
+---------------------------------------------------------------------------------------------------
+ls -la me lista los archivos que contiene una carpeta con sus atributos, puede ser la ubicación actual o una ruta especifica, incluyendo los archivos ocultos
+---------------------------------------------------------------------------------------------------
+clear limpiar la consola o terminal, o un shorcut crtl + L
+---------------------------------------------------------------------------------------------------
+mkdir <nombre carpeta> nos permite crear una carpeta
+---------------------------------------------------------------------------------------------------
+touch <nombre del archivo> nos permite crear un archivo
+---------------------------------------------------------------------------------------------------
+cat <nombre del archivo> me permite visualizar el contenido del un archivo y lo muestra en el terminal
+---------------------------------------------------------------------------------------------------
+history nos muestra un historial de los comandos que hemos utilizado
+---------------------------------------------------------------------------------------------------
+rm <nombre del archivo> me permite borrar un archivo
+---------------------------------------------------------------------------------------------------
+OJO en Windows el terminal no es case sensitive (Sensible las mayusculas), con Linux,y UNIX si son case sensitive
+---------------------------------------------------------------------------------------------------
+Comandos para iniciar tu repositorio con Git
+git init: para inicializar el repositorio git y el staged
+git add nombre_del_archivo.txt: enviar el archivo al staged
+git status: ver el estado, si se requiere agregar al starget o si se requiere commit
+git conf: para ver las posibles configuraciones
+git conf --list: para ver la lista de configuraciones hechas
+git conf --list --show-origin: para mostrar las configuraciones y sus rutas
+git rm --cached nombre_del_archivo.txt: para eliminar el archivo del staged(ram)
+git rm nombre_del_archivo.txt: para eliminar del repositorio
+
+Stanging Area = Es el espacio en donde se cargan los archivos que han sido editados esto con el fin de registrar sus versiones y posteriormente enviar al repositorio la version mas actual (final) de ellos. Esto significa que en este espacio se almacenaran todas las versiones de los archivos y de esta manera poder realizar comparaciones entre estas o adaptar una versión anterior como version final.
+
+Para volver a commits previos, borrando los cambios realizados desde ese commit, podemos utilizar:
+
+git reset --soft [SHA 1]: elimina los cambios hasta el staging area
+git reset --mixed [SHA 1]: elimina los cambios hasta el working area
+git reset --hard [SHA 1]: regresa hasta el commit del [SHA-1]
+Donde el SHA-1 es el identificador del commit
