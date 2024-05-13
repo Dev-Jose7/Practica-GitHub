@@ -1,3 +1,5 @@
+Edteam:
+
 ~Git: Es una tecnologia que permite registrar el historial de cambios (versiones) de un proyecto, lo que lo convierte en un sistema de control de versiones (VCS).
 ~Repositorio: Es un proyecto que esta siendo gestionado por Git para el registro de todas sus versiones, esto significa que es el directorio (carpeta) central en donde se almacena el proyecto.
 ~Commit: Son las versiones registradas de un repositorio.
@@ -46,20 +48,14 @@ Herramientas de Git:
 -Repositorios en la nube: GitHub, Bitbucket, GitLab
  
 
-
-
-
-
-
-
-
-
-Comandos Principales
+--------------------------------------------------------------------------------------------------------------------------
+Platzi:
 
 --Git inicia ubicandose en la carpeta raíz de los archivos del usuario
 --Repositorio, es la carpeta central de los archivos que conforman una aplicación
 --Le indicaremos a Git que queremos crear un nuevo repositorio para utilizar su sistema de control de versiones.  Solo debemos posicionarnos en la carpeta raíz de nuestro proyecto y ejecutar el comando: git init:
 
+Comandos Principales:
 pwd nos muestra el path o ruta de la carpeta en donde nos encontramos ubicados
 cd me permite acceder (entrar) a una carpeta en un nivel o varios niveles
 ---------------------------------------------------------------------------------------------------
