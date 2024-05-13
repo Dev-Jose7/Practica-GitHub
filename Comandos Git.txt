@@ -15,7 +15,7 @@ Caracteristicas de Git:
 Flujo de trabajo - Funcionamiento básico:
 ~Para inicializar Git es necesario determinar que directorio (carpeta) será el repositorio, una vez determinado el directorio, ubicaremos la ruta de esta carpeta con la consola, puede ser la proporcionada por Git o la que cuenta el PC. Una vez ubicado el directorio desde la consola usaremos el comando: git init ó git clone para inicializar Git en el proyecto  
 -Git init: Se usa cuando un repositorio utilizará Git por primer vez.
--Git clone: Este se usa cuando un repositorio ha utilizado Git anteriormente y se busca trabajar en un proyecto ya iniciado, se copiará todo el repositorio incluyendo la versión final y las versiones anteriores.
+-Git clone: Este se usa cuando un repositorio ha utilizado Git anteriormente y se busca trabajar en un proyecto ya iniciado y se encuentra almacenado en un repositorio en la nube, permitiendo así el trabajo con coloboradores de todas partes del mundo se copiará todo el repositorio incluyendo la versión final y las versiones anteriores.
 ~Una vez iniciado el repositorio ya se puede comenzar con las modificaciones al proyecto que este alberga, cada que se realicen modificaciones se debe realizar un commit para que de esta manera se registren los cambios que se realicen al repositorio, estos deben de realizarse de forma manual y deben acompañarse por un comentario, Git obliga a que cada commit vaya con un comentario esto con el fín de especificar las modificaciones y quien las realizo, se recomienda que cada commit sea registrado cuando se realice una funcionalidad completa y especifica al proyecto.
 ~Cuando se hace uso de Git el trabajo de registrar cada commit se divide en tres zonas: working directory, staging area y repository:
 -Working area: Es el espacio en donde se encuentran los archivos que no han sido registrados por Git, estos archivos Git los reconoce como "Untracked files".
@@ -101,3 +101,34 @@ git reset --soft [SHA 1]: elimina los cambios hasta el staging area
 git reset --mixed [SHA 1]: elimina los cambios hasta el working area
 git reset --hard [SHA 1]: regresa hasta el commit del [SHA-1]
 Donde el SHA-1 es el identificador del commit
+
+Cuando empiezas a trabajar en un entorno local, el proyecto vive únicamente en tu computadora. Esto significa que no hay forma de que otros miembros del equipo trabajen en él.
+
+Para solucionar esto, utilizamos los servidores remotos: un nuevo estado que deben seguir nuestros archivos para conectarse y trabajar con equipos de cualquier parte del mundo.
+
+Comandos para trabajo remoto con GIT
+git clone url_del_servidor_remoto: Nos permite descargar los archivos de la última versión de la rama principal y todo el historial de cambios en la carpeta .git.
+git push: Luego de hacer git add y git commit debemos ejecutar este comando para mandar los cambios al servidor remoto.
+git fetch: Lo usamos para traer actualizaciones del servidor remoto y guardarlas en nuestro repositorio local (en caso de que hayan, por supuesto).
+git merge: También usamos el comando git merge con servidores remotos. Lo necesitamos para combinar los últimos cambios del servidor remoto y nuestro directorio de trabajo.
+git pull: Básicamente, git fetch y git merge al mismo tiempo.
+
+Adicionalmente, tenemos otros comandos que nos sirven para trabajar en proyectos muy grandes:
+
+git log --oneline:Te muestra el id commit y el título del commit.
+git log --decorate: Te muestra donde se encuentra el head point en el log.
+git log --stat: Explica el número de líneas que se cambiaron brevemente.
+git log -p: Explica el número de líneas que se cambiaron y te muestra que se cambió en el contenido.
+git shortlog: Indica que commits ha realizado un usuario, mostrando el usuario y el título de sus commits.
+git log --graph --oneline --decorate y
+git log --pretty=format:"%cn hizo un commit %h el dia %cd": Muestra mensajes personalizados de los commits.
+git log -3: Limitamos el número de commits.
+git log --after=“2018-1-2”
+git log --after=“today” y
+git log --after=“2018-1-2” --before=“today”: Commits para localizar por fechas.
+git log --author=“Name Author”: Commits hechos por autor que cumplan exactamente con el nombre.
+git log --grep=“INVIE”: Busca los commits que cumplan tal cual está escrito entre las comillas.
+git log --grep=“INVIE” –i: Busca los commits que cumplan sin importar mayúsculas o minúsculas.
+git log – index.html: Busca los commits en un archivo en específico.
+git log -S “Por contenido”: Buscar los commits con el contenido dentro del archivo.
+git log > log.txt: guardar los logs en un archivo txt
